@@ -1,0 +1,22 @@
+[global]
+name=nvme-seq-write
+time_based
+ramp_time=3
+runtime=30
+readwrite=write
+bs=256K
+ioengine=libaio
+direct=1
+# The number of threads to use for the test (for NVMe set to 1-2x the number of physical drives)
+numjobs=12
+iodepth=32
+group_reporting=1
+# The size of individual test files
+size=1G
+# The number of test files (set to number of physical drives)
+nrfiles=12
+sync=1
+
+[nvme0]
+# The directory to write to (set to a dataset within the pool you want to test and MAKE SURE primarycache=metadata for that dataset)
+filename=/mnt/SSDs/test/write
